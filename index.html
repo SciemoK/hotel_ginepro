@@ -1,0 +1,1736 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Ginepro - Bormio | Valdisotto (SO)</title>
+    <meta name="description" content="Hotel Ginepro a Valdisotto, a 5km da Bormio. Vicino alla pista Stelvio, alle Terme di Bormio e agli impianti BORMIO 2000. Atmosfera familiare, cucina valtellinese.">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c4c3b;
+            --primary-dark: #1e3529;
+            --accent: #c49a45;
+            --accent-light: #d4b06a;
+            --text: #2a2a2a;
+            --text-light: #666;
+            --bg-light: #f7f5f0;
+            --white: #ffffff;
+            --shadow: 0 4px 20px rgba(0,0,0,0.08);
+            --shadow-md: 0 8px 40px rgba(0,0,0,0.12);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; }
+
+        /* ===================== HEADER ===================== */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 0 5%;
+            height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.4s ease;
+            background: transparent;
+        }
+
+        header.scrolled {
+            background: rgba(255,255,255,0.97);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo img {
+            height: 48px;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+            transition: filter 0.4s;
+        }
+
+        header.scrolled .logo img {
+            filter: none;
+        }
+
+        .logo-fallback {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            color: var(--white);
+            transition: color 0.4s;
+        }
+
+        header.scrolled .logo-fallback {
+            color: var(--primary);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 28px;
+            align-items: center;
+        }
+
+        nav ul li a {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.9);
+            transition: color 0.3s;
+            position: relative;
+            padding-bottom: 4px;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 0; height: 1px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after { width: 100%; }
+        nav ul li a:hover { color: var(--accent-light); }
+
+        header.scrolled nav ul li a {
+            color: var(--text);
+        }
+
+        header.scrolled nav ul li a:hover {
+            color: var(--accent);
+        }
+
+        .btn-prenota {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            background: var(--accent);
+            color: var(--white);
+            padding: 10px 22px;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        .btn-prenota:hover {
+            background: var(--primary);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(196,154,69,0.4);
+        }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--white);
+            transition: all 0.3s;
+        }
+
+        header.scrolled .hamburger span {
+            background: var(--primary);
+        }
+
+        .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* ===================== HERO ===================== */
+        .hero {
+            height: 100vh;
+            min-height: 600px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://www.hotelginepro.com/assets/img/hot1.jpg');
+            background-size: cover;
+            background-position: center;
+            transform: scale(1.05);
+            transition: transform 8s ease;
+        }
+
+        .hero-bg.loaded { transform: scale(1); }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(20,35,25,0.35) 0%,
+                rgba(20,35,25,0.5) 50%,
+                rgba(20,35,25,0.7) 100%
+            );
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 850px;
+            padding: 0 20px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--accent-light);
+            margin-bottom: 20px;
+            padding: 6px 16px;
+            border: 1px solid rgba(196,154,69,0.5);
+            border-radius: 2px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 300;
+            margin-bottom: 24px;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+            letter-spacing: 0.02em;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--accent-light);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            font-weight: 300;
+            max-width: 580px;
+            margin: 0 auto 36px;
+            opacity: 0.92;
+            line-height: 1.8;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            background: var(--accent);
+            color: var(--white);
+            padding: 14px 32px;
+            border-radius: 2px;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(196,154,69,0.4);
+        }
+
+        .btn-outline {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            border: 1px solid rgba(255,255,255,0.7);
+            color: var(--white);
+            padding: 14px 32px;
+            border-radius: 2px;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-outline:hover {
+            background: rgba(255,255,255,0.15);
+            border-color: var(--white);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255,255,255,0.6);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            animation: bounce 2s infinite;
+        }
+
+        .hero-scroll-line {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.6), transparent);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(6px); }
+        }
+
+        /* ===================== HIGHLIGHT STRIP ===================== */
+        .highlights {
+            background: var(--primary);
+            padding: 28px 5%;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+        }
+
+        .highlight-item {
+            text-align: center;
+            color: var(--white);
+            padding: 20px;
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .highlight-item:last-child { border-right: none; }
+
+        .highlight-icon {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+        }
+
+        .highlight-item h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--accent-light);
+        }
+
+        .highlight-item p {
+            font-size: 0.8rem;
+            opacity: 0.75;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* ===================== SECTIONS ===================== */
+        .section { padding: 90px 5%; }
+        .section-sm { padding: 60px 5%; }
+
+        .section-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .section-divider {
+            width: 50px;
+            height: 2px;
+            background: var(--accent);
+            margin-bottom: 30px;
+        }
+
+        .section-divider.center { margin-left: auto; margin-right: auto; }
+
+        .text-center { text-align: center; }
+
+        /* ===================== ABOUT ===================== */
+        #about { background: var(--white); }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-text p {
+            color: var(--text-light);
+            margin-bottom: 18px;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 30px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .feature-icon {
+            color: var(--accent);
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .about-images {
+            position: relative;
+        }
+
+        .about-img-main {
+            width: 100%;
+            height: 480px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .about-img-secondary {
+            position: absolute;
+            bottom: -30px;
+            left: -30px;
+            width: 220px;
+            height: 165px;
+            object-fit: cover;
+            border-radius: 4px;
+            border: 6px solid var(--white);
+            box-shadow: var(--shadow-md);
+        }
+
+        .award-badge {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 90px;
+            height: 90px;
+            object-fit: contain;
+        }
+
+        /* ===================== OFFERTA ===================== */
+        .offerta-strip {
+            background: var(--accent);
+            padding: 24px 5%;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .offerta-strip p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .offerta-strip span {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 2px;
+            margin-left: 12px;
+        }
+
+        /* ===================== CAMERE ===================== */
+        #camere { background: var(--bg-light); }
+
+        .rooms-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .room-card {
+            background: var(--white);
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .room-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .room-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .room-card:hover .room-img { transform: scale(1.03); }
+
+        .room-img-wrap { overflow: hidden; }
+
+        .room-content { padding: 28px; }
+
+        .room-content h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .room-meta {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .room-content p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 18px;
+            line-height: 1.7;
+        }
+
+        .room-amenities {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .amenity-tag {
+            font-size: 0.72rem;
+            font-family: 'Montserrat', sans-serif;
+            background: var(--bg-light);
+            color: var(--text-light);
+            padding: 4px 10px;
+            border-radius: 2px;
+        }
+
+        .room-link {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: gap 0.3s;
+        }
+
+        .room-link:hover { gap: 10px; }
+
+        /* Tariffe table */
+        .tariffe-wrap {
+            max-width: 750px;
+            margin: 50px auto 0;
+        }
+
+        .tariffe-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .tariffe-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .tariffe-table th {
+            background: var(--primary);
+            color: var(--white);
+            padding: 12px 16px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-align: left;
+        }
+
+        .tariffe-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #eee;
+            color: var(--text-light);
+        }
+
+        .tariffe-table tr:nth-child(even) td { background: var(--bg-light); }
+        .tariffe-table tr:hover td { background: #f0ede6; }
+
+        .tariffe-note {
+            margin-top: 16px;
+            font-size: 0.82rem;
+            color: var(--text-light);
+            font-style: italic;
+            text-align: center;
+            line-height: 1.7;
+        }
+
+        /* ===================== RISTORANTE ===================== */
+        #ristorante { background: var(--white); }
+
+        .restaurant-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .restaurant-text p {
+            color: var(--text-light);
+            margin-bottom: 18px;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .specialita {
+            margin-top: 24px;
+            padding: 20px 24px;
+            background: var(--bg-light);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 4px 4px 0;
+        }
+
+        .specialita h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .specialita p {
+            font-size: 0.88rem;
+            color: var(--text-light);
+            margin: 0;
+        }
+
+        .restaurant-images {
+            display: grid;
+            grid-template-rows: 300px 200px;
+            gap: 16px;
+        }
+
+        .restaurant-images img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        /* ===================== DINTORNI ===================== */
+        #dintorni { background: var(--primary); color: var(--white); }
+
+        #dintorni .section-title { color: var(--white); }
+        #dintorni .section-label { color: var(--accent-light); }
+        #dintorni .section-divider { background: var(--accent-light); }
+
+        .dintorni-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .dintorni-card {
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+            height: 260px;
+            cursor: pointer;
+        }
+
+        .dintorni-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .dintorni-card:hover img { transform: scale(1.08); }
+
+        .dintorni-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(20,35,25,0.85) 0%, transparent 60%);
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+        }
+
+        .dintorni-label {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .dintorni-label span {
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent-light);
+            margin-bottom: 4px;
+        }
+
+        /* ===================== GALLERY ===================== */
+        #gallery { background: var(--bg-light); }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 200px;
+            gap: 12px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .gallery-item.tall { grid-row: span 2; }
+        .gallery-item.wide { grid-column: span 2; }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img { transform: scale(1.06); }
+
+        /* ===================== CONTATTI ===================== */
+        #contatti { background: var(--white); }
+
+        .contatti-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: start;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .contact-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .contact-item h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+
+        .contact-item p, .contact-item a {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            display: block;
+        }
+
+        .contact-item a:hover { color: var(--accent); }
+
+        .booking-card {
+            background: var(--primary);
+            color: var(--white);
+            padding: 40px;
+            border-radius: 4px;
+        }
+
+        .booking-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+            color: var(--white);
+        }
+
+        .booking-card p {
+            font-size: 0.95rem;
+            opacity: 0.85;
+            margin-bottom: 24px;
+            line-height: 1.7;
+        }
+
+        .discount-badge {
+            background: var(--accent);
+            color: var(--white);
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 2px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 24px;
+        }
+
+        .booking-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .booking-form input, .booking-form select {
+            padding: 12px 16px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.08);
+            color: var(--white);
+            border-radius: 2px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .booking-form input::placeholder { color: rgba(255,255,255,0.5); }
+        .booking-form input:focus, .booking-form select:focus { border-color: var(--accent); }
+        .booking-form select option { background: var(--primary-dark); }
+
+        .booking-form .btn-primary {
+            width: 100%;
+            text-align: center;
+            padding: 14px;
+        }
+
+        /* ===================== FOOTER ===================== */
+        footer {
+            background: var(--primary-dark);
+            color: var(--white);
+            padding: 60px 5% 24px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-col h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent-light);
+            margin-bottom: 20px;
+        }
+
+        .footer-logo img {
+            height: 50px;
+            object-fit: contain;
+            margin-bottom: 16px;
+            opacity: 0.9;
+        }
+
+        .footer-logo p {
+            font-size: 0.88rem;
+            opacity: 0.65;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul { list-style: none; }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+            font-size: 0.88rem;
+            opacity: 0.75;
+        }
+
+        .footer-col ul li a {
+            transition: opacity 0.3s;
+        }
+
+        .footer-col ul li a:hover { opacity: 1; color: var(--accent-light); }
+
+        .footer-col address {
+            font-style: normal;
+            font-size: 0.88rem;
+            opacity: 0.75;
+            line-height: 1.9;
+        }
+
+        .footer-col address a:hover { color: var(--accent-light); }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.78rem;
+            opacity: 0.5;
+        }
+
+        /* ===================== LIGHTBOX ===================== */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.93);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .lightbox.active { display: flex; }
+
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 4px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 28px;
+            font-size: 2rem;
+            color: var(--white);
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+            background: none;
+            border: none;
+        }
+
+        .lightbox-close:hover { opacity: 1; }
+
+        /* ===================== MOBILE NAV ===================== */
+        .mobile-nav {
+            position: fixed;
+            top: 75px;
+            left: 0;
+            width: 100%;
+            background: var(--white);
+            padding: 0 5%;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s;
+            z-index: 999;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .mobile-nav.open {
+            max-height: 400px;
+            padding: 20px 5%;
+        }
+
+        .mobile-nav ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .mobile-nav ul li a {
+            display: block;
+            padding: 10px 0;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text);
+            border-bottom: 1px solid #f0f0f0;
+            transition: color 0.2s;
+        }
+
+        .mobile-nav ul li a:hover { color: var(--accent); }
+        .mobile-nav .btn-prenota { margin-top: 16px; text-align: center; display: block; }
+
+        /* ===================== FADE IN ===================== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in-delay { transition-delay: 0.15s; }
+        .fade-in-delay-2 { transition-delay: 0.3s; }
+        .fade-in-delay-3 { transition-delay: 0.45s; }
+
+        /* ===================== RESPONSIVE ===================== */
+        @media (max-width: 1024px) {
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .highlights { grid-template-columns: repeat(2, 1fr); }
+            .highlight-item:nth-child(2) { border-right: none; }
+            .highlight-item:nth-child(3) { border-right: 1px solid rgba(255,255,255,0.1); }
+            .highlight-item:nth-child(4) { border-right: none; }
+            .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+            .dintorni-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            nav { display: none; }
+            .btn-prenota.desktop { display: none; }
+            .hamburger { display: flex; }
+
+            .about-grid,
+            .restaurant-grid,
+            .contatti-grid { grid-template-columns: 1fr; gap: 40px; }
+
+            .rooms-grid { grid-template-columns: 1fr; }
+
+            .about-img-secondary { display: none; }
+            .award-badge { display: none; }
+
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            .gallery-item.tall { grid-row: span 1; }
+            .gallery-item.wide { grid-column: span 2; }
+
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+            .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+
+            .highlights { grid-template-columns: repeat(2, 1fr); }
+
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 0.95rem; }
+
+            .section { padding: 60px 5%; }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid { grid-template-columns: 1fr; }
+            .gallery-item.wide { grid-column: span 1; }
+            .dintorni-grid { grid-template-columns: 1fr; }
+            .highlights { grid-template-columns: 1fr; }
+            .highlight-item { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.1); }
+            .highlight-item:last-child { border-bottom: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header id="main-header">
+        <div class="logo">
+            <img src="https://www.hotelginepro.com/assets/img/logo/logo-2.png"
+                 alt="Hotel Ginepro"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+            <span class="logo-fallback" style="display:none;">HOTEL GINEPRO</span>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">L'Hotel</a></li>
+                <li><a href="#camere">Camere</a></li>
+                <li><a href="#ristorante">Ristorante</a></li>
+                <li><a href="#dintorni">Dintorni</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contatti">Contatti</a></li>
+            </ul>
+        </nav>
+
+        <a href="#contatti" class="btn-prenota desktop">Prenota Ora</a>
+
+        <div class="hamburger" id="hamburger" aria-label="Menu" role="button" tabindex="0">
+            <span></span><span></span><span></span>
+        </div>
+    </header>
+
+    <!-- Mobile Nav -->
+    <div class="mobile-nav" id="mobile-nav">
+        <ul>
+            <li><a href="#home" onclick="closeMobileNav()">Home</a></li>
+            <li><a href="#about" onclick="closeMobileNav()">L'Hotel</a></li>
+            <li><a href="#camere" onclick="closeMobileNav()">Camere</a></li>
+            <li><a href="#ristorante" onclick="closeMobileNav()">Ristorante</a></li>
+            <li><a href="#dintorni" onclick="closeMobileNav()">Dintorni</a></li>
+            <li><a href="#gallery" onclick="closeMobileNav()">Gallery</a></li>
+            <li><a href="#contatti" onclick="closeMobileNav()">Contatti</a></li>
+        </ul>
+        <a href="#contatti" class="btn-prenota" onclick="closeMobileNav()">Prenota Ora</a>
+    </div>
+
+    <!-- ===== HERO ===== -->
+    <section id="home" class="hero">
+        <div class="hero-bg" id="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-badge">Valdisotto · Bormio · Valtellina</div>
+            <h1>La Vacanza Perfetta<br>per il tuo <em>Relax</em></h1>
+            <p>A pochi passi dalla pista Stelvio e dalle Terme di Bormio. Un rifugio alpino dall'atmosfera familiare nel cuore della Valtellina.</p>
+            <div class="hero-ctas">
+                <a href="#contatti" class="btn-primary">Prenota Ora</a>
+                <a href="#about" class="btn-outline">Scopri l'Hotel</a>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <div class="hero-scroll-line"></div>
+            Scorri
+        </div>
+    </section>
+
+    <!-- ===== HIGHLIGHTS ===== -->
+    <div class="highlights">
+        <div class="highlight-item">
+            <div class="highlight-icon">⛷️</div>
+            <h4>Pista Stelvio</h4>
+            <p>A due passi dalla pista</p>
+        </div>
+        <div class="highlight-item">
+            <div class="highlight-icon">♨️</div>
+            <h4>Terme di Bormio</h4>
+            <p>15 minuti in auto</p>
+        </div>
+        <div class="highlight-item">
+            <div class="highlight-icon">🏔️</div>
+            <h4>BORMIO 2000</h4>
+            <p>5 minuti dagli impianti</p>
+        </div>
+        <div class="highlight-item">
+            <div class="highlight-icon">🍽️</div>
+            <h4>Cucina Valtellinese</h4>
+            <p>Ristorante con menù giornaliero</p>
+        </div>
+    </div>
+
+    <!-- ===== ABOUT ===== -->
+    <section id="about" class="section">
+        <div class="about-grid">
+            <div class="about-text fade-in">
+                <span class="section-label">Il Nostro Hotel</span>
+                <h2 class="section-title">Il Nostro Hotel,<br>la tua casa</h2>
+                <div class="section-divider"></div>
+                <p>L'Hotel Ginepro dista 5 km dal centro di Bormio e 15 minuti di auto dalle Terme di Bormio. Ci troviamo in località Ciuk a 2 passi dalla pista Stelvio e a 5 minuti di auto dagli impianti di risalita di BORMIO 2000.</p>
+                <p>L'ambiente è discreto e familiare, il prezzo è modico, la tranquillità è assicurata. Benessere e soddisfazione dei nostri ospiti sono i nostri principali obiettivi.</p>
+                <p>Per la comodità dei nostri clienti offriamo un ampio parcheggio, un Bar con salone comune, un deposito sci e una terrazza solarium con splendida vista su Bormio.</p>
+
+                <div class="about-features">
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>Ampio parcheggio gratuito</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>Bar e salone comune</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>Deposito sci</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>Terrazza solarium</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>Colazione inclusa</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>Atmosfera familiare</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-images fade-in fade-in-delay">
+                <img class="about-img-main"
+                     src="https://www.hotelginepro.com/assets/img/hot3.jpg"
+                     alt="Hotel Ginepro esterno"
+                     onerror="this.src='https://www.hotelginepro.com/assets/img/hot1.jpg'">
+                <img class="about-img-secondary"
+                     src="https://www.hotelginepro.com/assets/img/hot5.jpg"
+                     alt="Hotel Ginepro terrazza"
+                     onerror="this.style.display='none'">
+                <img class="award-badge"
+                     src="https://www.hotelginepro.com/assets/img/award.png"
+                     alt="Award"
+                     onerror="this.style.display='none'">
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== OFFERTA STRIP ===== -->
+    <div class="offerta-strip">
+        <p>Miglior prezzo GARANTITO prenotando dal nostro sito
+            <span>-10% per 2+ notti</span>
+        </p>
+    </div>
+
+    <!-- ===== CAMERE ===== -->
+    <section id="camere" class="section">
+        <div class="text-center fade-in">
+            <span class="section-label">Dove Soggiornare</span>
+            <h2 class="section-title">Camere & Tariffe</h2>
+            <div class="section-divider center"></div>
+            <p style="color: var(--text-light); max-width: 600px; margin: 0 auto 50px;">Tutte le nostre camere sono arredate in stile alpino, semplici ma curate e dotate di ogni confort.</p>
+        </div>
+
+        <div class="rooms-grid">
+            <div class="room-card fade-in">
+                <div class="room-img-wrap">
+                    <img class="room-img"
+                         src="https://www.hotelginepro.com/assets/img/cam1.jpg"
+                         alt="Camera Singola"
+                         onerror="this.src='https://www.hotelginepro.com/assets/img/cam2.jpg'">
+                </div>
+                <div class="room-content">
+                    <div class="room-meta">1 Adulto · 30 m²</div>
+                    <h3>Camera Singola</h3>
+                    <p>Accogliente camera per un soggiorno solitario o di lavoro, con tutti i comfort necessari e vista sulle montagne.</p>
+                    <div class="room-amenities">
+                        <span class="amenity-tag">TV Sat</span>
+                        <span class="amenity-tag">Telefono</span>
+                        <span class="amenity-tag">Bagno privato</span>
+                        <span class="amenity-tag">Asciugacapelli</span>
+                        <span class="amenity-tag">Kit cortesia</span>
+                    </div>
+                    <a href="#contatti" class="room-link">Prenota ora →</a>
+                </div>
+            </div>
+
+            <div class="room-card fade-in fade-in-delay">
+                <div class="room-img-wrap">
+                    <img class="room-img"
+                         src="https://www.hotelginepro.com/assets/img/cam2.jpg"
+                         alt="Camera Doppia"
+                         onerror="this.src='https://www.hotelginepro.com/assets/img/cam3.jpg'">
+                </div>
+                <div class="room-content">
+                    <div class="room-meta">2 Adulti · 40 m²</div>
+                    <h3>Camera Doppia</h3>
+                    <p>Spaziosa camera matrimoniale o doppia, ideale per coppie e amici, con arredo alpino curato e vista panoramica.</p>
+                    <div class="room-amenities">
+                        <span class="amenity-tag">TV Sat</span>
+                        <span class="amenity-tag">Telefono</span>
+                        <span class="amenity-tag">Bagno privato</span>
+                        <span class="amenity-tag">Asciugacapelli</span>
+                        <span class="amenity-tag">Kit cortesia</span>
+                    </div>
+                    <a href="#contatti" class="room-link">Prenota ora →</a>
+                </div>
+            </div>
+
+            <div class="room-card fade-in fade-in-delay-2">
+                <div class="room-img-wrap">
+                    <img class="room-img"
+                         src="https://www.hotelginepro.com/assets/img/cam5.jpg"
+                         alt="Camera Tripla"
+                         onerror="this.src='https://www.hotelginepro.com/assets/img/cam4.jpg'">
+                </div>
+                <div class="room-content">
+                    <div class="room-meta">3–4 Adulti · 45 m²</div>
+                    <h3>Camera Tripla</h3>
+                    <p>Ampia camera ideale per famiglie o gruppi di amici, con spazio per 3 o 4 persone e tutti i comfort alpini.</p>
+                    <div class="room-amenities">
+                        <span class="amenity-tag">TV Sat</span>
+                        <span class="amenity-tag">Telefono</span>
+                        <span class="amenity-tag">Bagno privato</span>
+                        <span class="amenity-tag">Asciugacapelli</span>
+                        <span class="amenity-tag">Kit cortesia</span>
+                    </div>
+                    <a href="#contatti" class="room-link">Prenota ora →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tariffe Table -->
+        <div class="tariffe-wrap fade-in">
+            <p class="tariffe-title">Tariffe per persona/notte — mezza pensione</p>
+            <table class="tariffe-table">
+                <thead>
+                    <tr>
+                        <th>Periodo</th>
+                        <th>Min</th>
+                        <th>Max</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>6 Agosto – 30 Giugno</td><td>€ 35</td><td>€ 45</td></tr>
+                    <tr><td>30 Giugno – 31 Agosto</td><td>€ 45</td><td>€ 55</td></tr>
+                    <tr><td>1 Agosto – 10 Agosto</td><td>€ 50</td><td>€ 60</td></tr>
+                    <tr><td>10 Agosto – 25 Agosto</td><td>€ 70</td><td>€ 90</td></tr>
+                    <tr><td>25 Agosto – 15 Settembre</td><td>€ 35</td><td>€ 45</td></tr>
+                </tbody>
+            </table>
+            <p class="tariffe-note">
+                Supplemento camera singola: +€15/giorno &nbsp;·&nbsp;
+                Bambini 4–8 anni: 50% di sconto &nbsp;·&nbsp;
+                Bambini 9–11 anni: 25% di sconto<br>
+                Colazione a buffet inclusa (8:00–10:00)
+            </p>
+        </div>
+    </section>
+
+    <!-- ===== RISTORANTE ===== -->
+    <section id="ristorante" class="section">
+        <div class="restaurant-grid">
+            <div class="restaurant-text fade-in">
+                <span class="section-label">Sapori Valtellinesi</span>
+                <h2 class="section-title">Il Ristorante</h2>
+                <div class="section-divider"></div>
+                <p>Nel cuore di Valdisotto, il nostro ristorante vi accoglie in un'atmosfera calda e raffinata dove le tradizioni culinarie della Valtellina incontrano la contemporaneità.</p>
+                <p>Ogni giorno proponiamo un menù diverso dove i piatti tradizionali valtellinesi si affiancano a piatti tipici della cucina italiana. Paste, dolci e creme sono preparati in casa con particolare attenzione alla qualità dei prodotti.</p>
+                <p>La nostra cantina offre un'ampia selezione di vini valtellinesi e nazionali per accompagnare ogni pasto.</p>
+
+                <div class="specialita">
+                    <h4>Specialità della Casa</h4>
+                    <p>Pizzoccheri della Valtellina · Sciatt · Casoncelli · Bresaola · Selvaggina di montagna · Dolci fatti in casa</p>
+                </div>
+            </div>
+
+            <div class="restaurant-images fade-in fade-in-delay">
+                <img src="https://www.hotelginepro.com/assets/img/ris1a.jpg"
+                     alt="Ristorante Hotel Ginepro"
+                     onerror="this.src='https://www.hotelginepro.com/assets/img/ris1.jpg'">
+                <img src="https://www.hotelginepro.com/assets/img/ris2a.jpg"
+                     alt="Cucina valtellinese"
+                     onerror="this.src='https://www.hotelginepro.com/assets/img/ris2.jpg'">
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== DINTORNI ===== -->
+    <section id="dintorni" class="section">
+        <div class="text-center fade-in" style="margin-bottom: 50px;">
+            <span class="section-label">Cosa Fare</span>
+            <h2 class="section-title">Arte, Trekking, Sci<br>e tanto altro ancora!</h2>
+            <div class="section-divider center"></div>
+        </div>
+
+        <div class="dintorni-grid">
+            <div class="dintorni-card fade-in">
+                <img src="https://www.hotelginepro.com/assets/img/dintorni/links2.jpg"
+                     alt="Sci a Bormio"
+                     onerror="this.src='https://www.hotelginepro.com/assets/img/dintorni/links1.jpg'">
+                <div class="dintorni-overlay">
+                    <div class="dintorni-label">
+                        <span>Inverno</span>
+                        Sci & Snowboard
+                    </div>
+                </div>
+            </div>
+
+            <div class="dintorni-card fade-in fade-in-delay">
+                <img src="https://www.hotelginepro.com/assets/img/dintorni/links8.jpg"
+                     alt="Terme di Bormio"
+                     onerror="this.src='https://www.hotelginepro.com/assets/img/dintorni/links5.jpg'">
+                <div class="dintorni-overlay">
+                    <div class="dintorni-label">
+                        <span>Tutto l'anno</span>
+                        Terme di Bormio
+                    </div>
+                </div>
+            </div>
+
+            <div class="dintorni-card fade-in fade-in-delay-2">
+                <img src="https://www.hotelginepro.com/assets/img/dintorni/links11.jpg"
+                     alt="Parco Nazionale dello Stelvio"
+                     onerror="this.src='https://www.hotelginepro.com/assets/img/dintorni/links9.jpg'">
+                <div class="dintorni-overlay">
+                    <div class="dintorni-label">
+                        <span>Estate</span>
+                        Parco dello Stelvio
+                    </div>
+                </div>
+            </div>
+
+            <div class="dintorni-card fade-in fade-in-delay-3">
+                <img src="https://www.hotelginepro.com/assets/img/dintorni/links4.jpg"
+                     alt="Trekking in Valtellina"
+                     onerror="this.src='https://www.hotelginepro.com/assets/img/dintorni/links3.jpg'">
+                <div class="dintorni-overlay">
+                    <div class="dintorni-label">
+                        <span>Estate</span>
+                        Trekking & Natura
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== GALLERY ===== -->
+    <section id="gallery" class="section">
+        <div class="text-center fade-in" style="margin-bottom: 50px;">
+            <span class="section-label">La Nostra Struttura</span>
+            <h2 class="section-title">Gallery</h2>
+            <div class="section-divider center"></div>
+        </div>
+
+        <div class="gallery-grid">
+            <div class="gallery-item tall fade-in" onclick="openLightbox(this)">
+                <img src="https://www.hotelginepro.com/assets/img/hot1.jpg" alt="Hotel Ginepro">
+            </div>
+            <div class="gallery-item fade-in fade-in-delay" onclick="openLightbox(this)">
+                <img src="https://www.hotelginepro.com/assets/img/hot2.png" alt="Hotel Ginepro"
+                     onerror="this.src='https://www.hotelginepro.com/assets/img/hot3.jpg'">
+            </div>
+            <div class="gallery-item fade-in fade-in-delay" onclick="openLightbox(this)">
+                <img src="https://www.hotelginepro.com/assets/img/cam3.jpg" alt="Camera">
+            </div>
+            <div class="gallery-item fade-in fade-in-delay-2" onclick="openLightbox(this)">
+                <img src="https://www.hotelginepro.com/assets/img/hot4.jpg" alt="Hotel Ginepro">
+            </div>
+            <div class="gallery-item wide fade-in fade-in-delay" onclick="openLightbox(this)">
+                <img src="https://www.hotelginepro.com/assets/img/ris1.jpg" alt="Ristorante">
+            </div>
+            <div class="gallery-item fade-in fade-in-delay-2" onclick="openLightbox(this)">
+                <img src="https://www.hotelginepro.com/assets/img/cam4.jpg" alt="Camera">
+            </div>
+            <div class="gallery-item fade-in fade-in-delay-3" onclick="openLightbox(this)">
+                <img src="https://www.hotelginepro.com/assets/img/hot6.jpg" alt="Hotel Ginepro"
+                     onerror="this.src='https://www.hotelginepro.com/assets/img/hot5.jpg'">
+            </div>
+            <div class="gallery-item fade-in fade-in-delay" onclick="openLightbox(this)">
+                <img src="https://www.hotelginepro.com/assets/img/ris3.jpg" alt="Ristorante">
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTATTI ===== -->
+    <section id="contatti" class="section" style="background: var(--bg-light);">
+        <div class="text-center fade-in" style="margin-bottom: 60px;">
+            <span class="section-label">Dove Siamo</span>
+            <h2 class="section-title">Contatti & Prenotazioni</h2>
+            <div class="section-divider center"></div>
+        </div>
+
+        <div class="contatti-grid">
+            <div class="fade-in">
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div>
+                        <h4>Indirizzo</h4>
+                        <p>Via San Pietro 7, Località San Pietro<br>23030 Valdisotto (SO) — Italia</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <div>
+                        <h4>Telefono</h4>
+                        <a href="tel:+390342894089">+39 0342/1894089</a>
+                        <a href="tel:+393515347581">+39 351/5347581</a>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">✉️</div>
+                    <div>
+                        <h4>Email</h4>
+                        <a href="mailto:info@hotelginepro.com">info@hotelginepro.com</a>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">🕐</div>
+                    <div>
+                        <h4>Reception</h4>
+                        <p>Aperto tutto l'anno<br>Check-in: 14:00 — Check-out: 11:00</p>
+                    </div>
+                </div>
+
+                <!-- Map embed -->
+                <div style="border-radius: 4px; overflow: hidden; box-shadow: var(--shadow); margin-top: 10px;">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2757.9!2d10.3!3d46.46!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47835!2sHotel+Ginepro!5e0!3m2!1sit!2sit!4v1"
+                        width="100%" height="220"
+                        style="border:0; display:block;"
+                        allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+
+            <div class="booking-card fade-in fade-in-delay">
+                <h3>Prenota il tuo Soggiorno</h3>
+                <p>Contattaci direttamente per avere il miglior prezzo garantito. Siamo sempre disponibili per rispondere alle vostre domande e creare il soggiorno su misura per voi.</p>
+                <div class="discount-badge">— 10% SCONTO PER 2+ NOTTI —</div>
+
+                <form class="booking-form" onsubmit="handleBooking(event)">
+                    <input type="text" placeholder="Nome e Cognome" required>
+                    <input type="email" placeholder="Email" required>
+                    <input type="tel" placeholder="Telefono">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                        <input type="date" placeholder="Arrivo" style="color-scheme: dark;">
+                        <input type="date" placeholder="Partenza" style="color-scheme: dark;">
+                    </div>
+                    <select>
+                        <option value="" disabled selected>Tipo di camera</option>
+                        <option>Camera Singola (30 m²)</option>
+                        <option>Camera Doppia (40 m²)</option>
+                        <option>Camera Tripla (45 m²)</option>
+                    </select>
+                    <textarea placeholder="Note o richieste speciali..."
+                              style="padding: 12px 16px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.08); color: var(--white); border-radius: 2px; font-family: 'Open Sans', sans-serif; font-size: 0.9rem; outline: none; resize: vertical; min-height: 90px; transition: border-color 0.3s;"
+                              onfocus="this.style.borderColor='var(--accent)'"
+                              onblur="this.style.borderColor='rgba(255,255,255,0.2)'"></textarea>
+                    <button type="submit" class="btn-primary" style="cursor: pointer; border: none;">Invia Richiesta</button>
+                </form>
+
+                <p style="margin-top: 16px; font-size: 0.78rem; opacity: 0.55; text-align: center;">
+                    Oppure scrivi a <a href="mailto:info@hotelginepro.com" style="color: var(--accent-light);">info@hotelginepro.com</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col footer-logo">
+                <img src="https://www.hotelginepro.com/assets/img/logo/logo-4.png"
+                     alt="Hotel Ginepro"
+                     onerror="this.style.display='none'">
+                <p>La vacanza perfetta per il tuo relax in Valtellina. A due passi dalle Terme di Bormio e dagli impianti di sci, in un'atmosfera familiare e accogliente.</p>
+                <img src="https://www.hotelginepro.com/assets/img/award.png"
+                     alt="Premio"
+                     style="height: 60px; object-fit: contain; opacity: 0.8;"
+                     onerror="this.style.display='none'">
+            </div>
+
+            <div class="footer-col">
+                <h4>Menu</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">L'Hotel</a></li>
+                    <li><a href="#camere">Camere & Tariffe</a></li>
+                    <li><a href="#ristorante">Ristorante</a></li>
+                    <li><a href="#dintorni">Dintorni</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#contatti">Contatti</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Servizi</h4>
+                <ul>
+                    <li>Parcheggio gratuito</li>
+                    <li>Bar & Salone comune</li>
+                    <li>Deposito sci</li>
+                    <li>Terrazza solarium</li>
+                    <li>Colazione inclusa</li>
+                    <li>Ristorante</li>
+                    <li>Wi-Fi gratuito</li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contatti</h4>
+                <address>
+                    Via San Pietro 7<br>
+                    Loc. San Pietro<br>
+                    23030 Valdisotto (SO)<br>
+                    <br>
+                    <a href="tel:+390342894089">+39 0342/1894089</a><br>
+                    <a href="tel:+393515347581">+39 351/5347581</a><br>
+                    <a href="mailto:info@hotelginepro.com">info@hotelginepro.com</a><br>
+                    <br>
+                    P.IVA: 05165300285
+                </address>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span>&copy; 2025 Hotel Ginepro · Tutti i diritti riservati</span>
+            <span>Via San Pietro 7, 23030 Valdisotto (SO)</span>
+        </div>
+    </footer>
+
+    <!-- ===== LIGHTBOX ===== -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()">×</button>
+        <img id="lightbox-img" src="" alt="">
+    </div>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script>
+        // Header scroll effect
+        const header = document.getElementById('main-header');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Hero bg parallax + load
+        const heroBg = document.getElementById('hero-bg');
+        setTimeout(() => heroBg.classList.add('loaded'), 100);
+        window.addEventListener('scroll', () => {
+            heroBg.style.transform = `scale(1) translateY(${window.scrollY * 0.3}px)`;
+        });
+
+        // Hamburger
+        const hamburger = document.getElementById('hamburger');
+        const mobileNav = document.getElementById('mobile-nav');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('open');
+            mobileNav.classList.toggle('open');
+        });
+
+        hamburger.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                hamburger.classList.toggle('open');
+                mobileNav.classList.toggle('open');
+            }
+        });
+
+        function closeMobileNav() {
+            hamburger.classList.remove('open');
+            mobileNav.classList.remove('open');
+        }
+
+        // Fade-in on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Gallery lightbox
+        function openLightbox(el) {
+            const img = el.querySelector('img');
+            document.getElementById('lightbox-img').src = img.src;
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+        // Booking form
+        function handleBooking(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            btn.textContent = 'Richiesta inviata! ✓';
+            btn.style.background = '#2c4c3b';
+            setTimeout(() => {
+                btn.textContent = 'Invia Richiesta';
+                btn.style.background = '';
+                e.target.reset();
+            }, 3000);
+        }
+
+        // Active nav on scroll
+        const sections = document.querySelectorAll('section[id], footer[id]');
+        const navLinks = document.querySelectorAll('nav a, .mobile-nav a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(s => {
+                if (window.scrollY >= s.offsetTop - 100) current = s.id;
+            });
+            navLinks.forEach(a => {
+                a.style.color = '';
+                if (a.getAttribute('href') === '#' + current) {
+                    if (header.classList.contains('scrolled')) {
+                        a.style.color = 'var(--accent)';
+                    }
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
